@@ -1,0 +1,24 @@
+import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../shared/auth-service';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
+export class HomeComponent implements OnInit {
+  userIsAdmin = false;
+
+  constructor(private nzAuth: AuthService) { }
+
+  ngOnInit() {
+    if (this.nzAuth.isUserAdmin() ) {
+      this.userIsAdmin = true;
+    } else {
+      return false;
+    }
+  }
+
+
+
+}

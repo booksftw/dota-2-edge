@@ -1,0 +1,32 @@
+<div class="d-block clearfix mr-5 adminBar">
+  <a routerLink="/" style="float:right; color:black;">Return</a>
+  <p>
+    dashboard works!
+  </p>
+</div>
+
+<nav class="navbar navbar-dark dashboard-nav" style="background-color: lavenderblush;">
+  <!--<a class="navbar-brand nav-item"  routerLink="/" routerLinkActive="active"-->
+  <!--[routerLinkActiveOptions]="{exact:true}">Home</a>-->
+  <a class="navbar-brand nav-item pl-5" routerLink='add' routerLinkActive="activeNav" >Add New</a>
+  <a class="navbar-brand nav-item pr-5" routerLink='update' routerLinkActive="activeNav">Modify</a>
+</nav>
+
+<router-outlet></router-outlet>
+
+
+
+<!--<div class="col-12 d-block mx-auto">-->
+  <!--<form (ngSubmit) #form="ngForm">-->
+    <!--<div class="form-group">-->
+      <!--<label for=""></label>-->
+    <!--</div>-->
+  <!--</form>-->
+<!--</div>-->
+
+<!--<nav class="navbar navbar-light" style="background-color: #63fd9c;">-->
+  <!--&lt;!&ndash;<a class="navbar-brand nav-item"  routerLink="/" routerLinkActive="active"&ndash;&gt;-->
+  <!--&lt;!&ndash;[routerLinkActiveOptions]="{exact:true}">Home</a>&ndash;&gt;-->
+  <!--<a class="navbar-brand nav-item" routerLink="/game" routerLinkActive="active" >Game</a>-->
+  <!--<a class="navbar-brand nav-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>-->
+<!--</nav>-->

@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <div class="row" *ngIf="userErrorAlert">
+    <div class="col alert-danger" role="alert">Error</div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-6">
+      <form (ngSubmit)="onLoginSubmit(loginForm)" #loginForm="ngForm">
+        <div class="form-group">
+          <h4>Sign In</h4>
+        </div>
+        <div class="form-group">
+          <label for="loginEmail">Email: </label>
+          <input type="email" id="loginEmail" name="loginEmail" class="form-control" required ngModel>
+          <label for="loginPassword">Password: </label>
+          <input type="password" id="loginPassword" name="loginPassword" class="form-control" required ngModel="">
+        </div>
+        <button class="btn btn-primary">Login</button>
+      </form>
+    </div>
+
+    <div class="col-6">
+      <form (ngSubmit)="onSignUpSubmit(signUpForm)" #signUpForm="ngForm">
+        <div class="form-group">
+          <h4>Or Create Account</h4>
+        </div>
+        <div class="form-group">
+          <!-- TODO -> optional: Set up user account meta data
+          <!--<label for="firstName">First Name: </label>-->
+          <!--<input type="text" id="firstName" name="firstName" class="form-control" ngModel>-->
+          <!--<label for="lastName">Last Name: </label>-->
+          <!--<input type="text" id="lastName" name="lastName" class="form-control" ngModel>-->
+          <label for="signUpEmail">Email: </label>
+          <input type="email" id="signUpEmail" name="signUpEmail" class="form-control" ngModel>
+          <label for="signUpPassword">Password: </label>
+          <input type="password" id="signUpPassword" name="signUpPassword" class="form-control" ngModel>
+        </div>
+        <button class="btn btn-success ">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+

@@ -1,0 +1,21 @@
+div.heroSelectionContainer{
+  float:left;
+}
+
+div.heroSelectionContainer ul{
+  list-style-type:none;
+}
+
+div.heroSelectionContainer img{
+  width:150px;
+  height:84px;
+  padding:8px;
+  cursor: pointer;
+}
+.col-sm-12.heroSelectionContainer li {
+  display: inline-block;
+}
+
+.col-sm-12.heroSelectionContainer li p {
+  text-align:center;
+}

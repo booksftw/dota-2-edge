@@ -1,0 +1,218 @@
+<div class="container heroSuggestionsContainer" *ngIf="showSuggestionUi">
+
+    <!-- RADIANT COLUMN -->
+    <div class="row">
+        <div class="col-6 radCol" style="background-color:lightskyblue">
+          <!-- Radiant row -->
+          <h2 class="card-header">Radiant</h2>
+          <ul class="list-group">
+            <li class="list-group-item"  *ngFor="let radHero of radHeroCollectionDisplay; index as i;">
+                <div class="col"> <h4 class="selectedSuggestedHeroName">{{ (radHero)?.name}}</h4> </div>
+                <div><img class="selectedSuggestedHeroImg" src="{{(radHero)?.imgUrl}}"></div>
+
+              <!-- Counter Hero Column -->
+              <div class="col counterHeroColumn">
+                <ul>
+                  <p class="counterHeroHeading"><strong>{{(radHero)?.name}} Weak against: </strong></p>
+                  <li (click)="onClickCounterHeroOverlay(countHero, 'radiant')" *ngFor="let countHero of radHeroCollectionDisplay[i].counterHero" class="counterHero">
+
+                    <!--<img [ngClass]="{'goldHeroPick':heroPickIndicator(countHero, 'radiant','counter')}" src="{{(countHero)?.imgUrl}}">-->
+                    <img [ngClass]="heroPickIndicator(countHero, 'radiant')" src="{{(countHero)?.imgUrl}}">
+
+
+                    <div *ngIf="countHero.showCounterOverlay" class="counterHeroOverlayContainer">
+                      <h4 style="text-align:center;">Is {{countHero.name}} a good pick?</h4>
+                      <p style="text-align:center; margin-bottom: 1.5em">Let's see how he matches to this teams selection.</p>
+                      <!-- COUNTER OVERLAY -->
+                      <img class="showOverlayImg" src="{{countHero.imgUrl}}">
+                      <h6>{{countHero.name}} Wins against(More Heroes Here = Better Pick)</h6>
+                      <ul *ngFor="let countHeroDetail of counterHeroOverlayDetails">
+                        <li><img src="{{countHeroDetail.imgUrl}}"></li>
+                      </ul>
+                      <ul *ngIf="this.counterHeroOverlayDetails.length === 0">
+                        <li><p>No advantage against this team's selection so far</p></li>
+                      </ul>
+                      <hr class="horizontalLineOverlay">
+                      <!-- WEAK AGAINST OVERLAY ------------------------------------------------------------------>
+                      <div>
+                        <img class="showOverlayImg" src="{{countHero.imgUrl}}">
+                        <h6>{{countHero.name}} Loses against(Less Heroes Here = Better Pick)</h6>
+                        <ul *ngFor="let weakHeroDetail of weakHeroOverlayDetails">
+                          <li><img src="{{weakHeroDetail.imgUrl}}"></li>
+                        </ul>
+                        <ul *ngIf="this.weakHeroOverlayDetails.length === 0">
+                          <li><p>No disadvantage so far may be a good pick.</p></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col" style="background-color:lightblue"><pre style="overflow-x: hidden"><em>Disadvantage description:</em> {{(radHero)?.counterDescript}}</pre></div>
+
+              <!-- Strong Against Hero Column -->
+              <!--<div class="col strongAgainstHeroColumn">-->
+                <!--<ul>-->
+                  <!--<p class="counterHeroHeading"><strong> {{(radHero)?.name}} Strong against: </strong></p>-->
+                  <!--<li class="counterHero" *ngFor="let strongAgainstHero of radHeroCollectionDisplay[i].strongAgainstHero">-->
+                    <!---->
+                    <!--<img [ngClass]="{'goldHeroPick':heroPickIndicator(countHero, 'radiant','strongAgainst')}" src="{{(strongAgainstHero)?.imgUrl}}">-->
+                    <!---->
+                  <!--</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+
+              <div class="col strongAgainstHeroColumn">
+                <ul>
+                  <p class="counterHeroHeading"><strong>{{(radHero)?.name}} Strong against: </strong></p>
+                  <li (click)="onClickCounterHeroOverlay(strongAgainstHero, 'radiant')" *ngFor="let strongAgainstHero of radHeroCollectionDisplay[i].strongAgainstHero" class="counterHero">
+
+                    <img src="{{(strongAgainstHero)?.imgUrl}}">
+
+                    <div *ngIf="strongAgainstHero.showCounterOverlay" class="counterHeroOverlayContainer" style="top: -30em;">
+                      <h4 style="text-align:center;">Is {{strongAgainstHero.name}} a good pick?</h4>
+                      <p style="text-align:center; margin-bottom: 1.5em">Let's see how he matches to this teams selection.</p>
+                      <!-- COUNTER OVERLAY -->
+                      <img class="showOverlayImg" src="{{strongAgainstHero.imgUrl}}">
+                      <h6>{{strongAgainstHero.name}} Wins against(More Heroes Here = Better Pick)</h6>
+
+                      <ul *ngFor="let countHeroDetail of counterHeroOverlayDetails">
+                        <li><img src="{{countHeroDetail.imgUrl}}"></li>
+                      </ul>
+                      <ul *ngIf="this.counterHeroOverlayDetails.length === 0">
+                        <li><p>No advantage against this team's selection so far</p></li>
+                      </ul>
+
+                      <hr class="horizontalLineOverlay">
+
+                      <!-- WEAK AGAINST OVERLAY -->
+                      <div>
+                        <img class="showOverlayImg" src="{{strongAgainstHero.imgUrl}}">
+                        <h6>{{strongAgainstHero.name}} Loses against(Less Heroes Here = Better Pick)</h6>
+                        <ul *ngFor="let weakHeroDetail of weakHeroOverlayDetails">
+                          <li><img src="{{weakHeroDetail.imgUrl}}"></li>
+                        </ul>
+                        <ul *ngIf="this.weakHeroOverlayDetails.length === 0">
+                          <li><p>No disadvantage so far may be a good pick.</p></li>
+                        </ul>
+                      </div>
+
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+
+              <div class="col" style="background-color:lightslategray"><pre style="overflow-x: hidden"><em>Advantage description:</em> {{(radHero)?.synergyDescript}}</pre></div>
+              <div class="col" style="background-color:lightgoldenrodyellow"><pre><em>Meta:</em> {{ (radHero)?.meta }}</pre></div>
+            </li>
+          </ul>
+        </div>
+
+      <!-- DIRE COLUMN -->
+      <div class="col-6 direCol" style="background-color:pink">
+        <!-- Dire row -->
+        <h2 class="card-header">Dire</h2>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let direHero of direHeroCollectionDisplay; index as i;">
+              <div class="col"> <h4 class="selectedSuggestedHeroName">{{ (direHero)?.name}}</h4> </div>
+              <div><img class="selectedSuggestedHeroImg" src="{{ (direHero)?.imgUrl }}"></div>
+
+            <!-- Counter Hero Column -->
+            <div class="col counterHeroColumn">
+              <ul>
+                <p class="counterHeroHeading"><strong>{{(direHero)?.name}} Weak against: </strong></p>
+                <li (click)="onClickCounterHeroOverlay(countHero, 'dire')" *ngFor="let countHero of direHeroCollectionDisplay[i].counterHero" class="counterHero">
+
+                  <!--<img [ngClass]="{'goldHeroPick':heroPickIndicator(countHero, 'dire')}" src="{{(countHero)?.imgUrl}}">-->
+                  <img [ngClass]="heroPickIndicator(countHero, 'dire')" src="{{(countHero)?.imgUrl}}">
+
+
+                  <div *ngIf="countHero.showCounterOverlay" class="counterHeroOverlayContainer">
+                    <h4 style="text-align:center;">Is {{countHero.name}} a good pick?</h4>
+                    <p style="text-align:center; margin-bottom: 1.5em">Let's see how he matches to this teams selection.</p>
+                    <!-- COUNTER OVERLAY -->
+                    <img class="showOverlayImg" src="{{countHero.imgUrl}}">
+                    <h6>{{countHero.name}} Wins against(More Heroes Here = Better Pick)</h6>
+                    <ul *ngFor="let countHeroDetail of counterHeroOverlayDetails">
+                      <li><img src="{{countHeroDetail.imgUrl}}"></li>
+                    </ul>
+                    <ul *ngIf="this.counterHeroOverlayDetails.length === 0">
+                      <li><p>No advantage against this team's selection so far</p></li>
+                    </ul>
+
+                    <hr class="horizontalLineOverlay">
+                    <!-- WEAK AGAINST OVERLAY -->
+                    <div>
+                      <img class="showOverlayImg" src="{{countHero.imgUrl}}">
+                      <h6>{{countHero.name}} Loses against(Less Heroes Here = Better Pick)</h6>
+                      <ul *ngFor="let weakHeroDetail of weakHeroOverlayDetails">
+                        <li><img src="{{weakHeroDetail.imgUrl}}"></li>
+                      </ul>
+                      <ul *ngIf="this.weakHeroOverlayDetails.length === 0">
+                        <li><p>No disadvantage so far may be a good pick.</p></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+
+            </div>
+            <div class="col" style="background-color:lightPink"> <pre style="overflow-x: hidden"><em>Disadvantage description</em> {{(direHero)?.counterDescript}}</pre></div>
+            <!-- Strong Against Hero Column -->
+            <div class="col strongAgainstHeroColumn">
+              <!--<ul>-->
+                <!--<p class="counterHeroHeading"><strong> {{(direHero)?.name}} Strong against: </strong></p>-->
+                <!--<li class="counterHero" *ngFor="let strongAgainstHero of direHeroCollectionDisplay[i].strongAgainstHero"><img src="{{(strongAgainstHero)?.imgUrl}}"></li>-->
+              <!--</ul>-->
+              <ul>
+                <p class="counterHeroHeading"><strong>{{(direHero)?.name}} Strong against: </strong></p>
+                <li (click)="onClickCounterHeroOverlay(strongAgainstHero, 'dire')" *ngFor="let strongAgainstHero of direHeroCollectionDisplay[i].strongAgainstHero" class="counterHero">
+
+                  <img src="{{(strongAgainstHero)?.imgUrl}}">
+
+                  <div *ngIf="strongAgainstHero.showCounterOverlay" class="counterHeroOverlayContainer" style="top: -30em;">
+                    <h4 style="text-align:center;">Is {{strongAgainstHero.name}} a good pick?</h4>
+                    <p style="text-align:center; margin-bottom: 1.5em">Let's see how he matches to this teams selection.</p>
+                    <!-- COUNTER OVERLAY -->
+                    <img class="showOverlayImg" src="{{strongAgainstHero.imgUrl}}">
+                    <h6>{{strongAgainstHero.name}} Wins against(More Heroes Here = Better Pick)</h6>
+
+                    <ul *ngFor="let countHeroDetail of counterHeroOverlayDetails">
+                      <li><img src="{{countHeroDetail.imgUrl}}"></li>
+                    </ul>
+                    <ul *ngIf="this.counterHeroOverlayDetails.length === 0">
+                      <li><p>No advantage against this team's selection so far</p></li>
+                    </ul>
+
+                    <hr class="horizontalLineOverlay">
+
+                    <!-- WEAK AGAINST OVERLAY --->
+                    <div>
+                      <img class="showOverlayImg" src="{{strongAgainstHero.imgUrl}}">
+                      <h6>{{strongAgainstHero.name}} Loses against(Less Heroes Here = Better Pick)</h6>
+                      <ul *ngFor="let weakHeroDetail of weakHeroOverlayDetails">
+                        <li><img src="{{weakHeroDetail.imgUrl}}"></li>
+                      </ul>
+                      <ul *ngIf="this.weakHeroOverlayDetails.length === 0">
+                        <li><p>No disadvantage so far may be a good pick.</p></li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </li>
+              </ul>
+
+
+            </div>
+            <div class="col" style="background-color:lightGray"><pre style="overflow-x: hidden"><em>Advantage description:</em> {{(direHero)?.synergyDescript}}</pre></div>
+            <div class="col" style="background-color:lightgoldenrodyellow"><pre><em>Meta:</em> {{((direHero)?.meta) }}</pre></div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+</div>
+

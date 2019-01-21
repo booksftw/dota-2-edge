@@ -1,0 +1,37 @@
+<p>
+  update-entry works!
+</p>
+<div *ngIf="showHeroDashboard" class="container">
+  <div class="row">
+    <div class="col-sm-12 heroSelectionContainer" >
+      <h1>Modify Hero</h1>
+      <div>
+        <ul>
+          <li routerLink="all-heroes">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Republic_Of_Korea_Broadcasting-TV_Rating_System%28ALL%29.svg/2000px-Republic_Of_Korea_Broadcasting-TV_Rating_System%28ALL%29.svg.png">
+            <p>All Heroes</p>
+          </li>
+          <li href="#" [routerLink]="[hero.id]" *ngFor="let hero of heroes | async">
+            <img src="{{hero.imgUrl}}"/>
+            <p>{{hero.name}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+
+
+<!--<ul>-->
+<!--<li *ngFor="let hero of heroes | async">-->
+<!--The heroes name:{{ hero.name }} <br>-->
+<!--The heroes id: {{ hero.id }} <br>-->
+<!--The heroes position(s): {{ hero.position }} <br>-->
+<!--&lt;!&ndash;The hero img <img class="img-thumbnail" src="{{hero.imgUrl}}"> <br>&ndash;&gt;-->
+<!--The hero object: {{hero}}-->
+<!--<br><br>-->
+<!--</li>-->
+<!--</ul>-->

@@ -1,0 +1,43 @@
+div.heroSelectionContainer{
+  float:left;
+}
+
+div.heroSelectionContainer ul{
+  list-style-type:none;
+}
+
+div.heroSelectionContainer img{
+  /*width:75px;*/
+  width:120px;
+  height:auto;
+
+  padding:2px;
+  cursor: pointer;
+}
+
+div.heroSelectionContainer p{
+  font-size:8px;
+  font-weight: bold;
+  color:darkslategrey;
+}
+.col-sm-12.heroSelectionContainer li {
+  display: inline-block;
+}
+
+.col-sm-12.heroSelectionContainer li p {
+  text-align:center;
+}
+
+.filterControls{
+  margin-bottom:80px;
+  display: block;
+  clear: both;
+}
+
+.filterControls .form-group {
+  position: absolute !important;
+}
+
+.filteredOut{
+  opacity: 0.2;
+}

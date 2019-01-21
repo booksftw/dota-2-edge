@@ -1,0 +1,43 @@
+
+<!--<app-hero-selected-table></app-hero-selected-table>-->
+<!--<app-hero-suggestions></app-hero-suggestions>-->
+<!--<app-hero-table></app-hero-table>-->
+
+<!--<div class="container masterContainerTest">-->
+  <!--<div class="row">-->
+    <!--<div class="col">-->
+      <!--<app-hero-selected-table></app-hero-selected-table>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="row">-->
+    <!--<div class="col-6">-->
+      <!--<app-hero-suggestions></app-hero-suggestions>-->
+    <!--</div>-->
+    <!--<div class="col-6">-->
+      <!--<app-hero-table></app-hero-table>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+<div class="container masterContainerTest">
+  <div class="row">
+    <div class="col">
+      <app-hero-selected-table></app-hero-selected-table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-hero-suggestions></app-hero-suggestions>
+    </div>
+      <div [ngClass]="{'d-none': this.collapseHeroTable}" class="col">
+      <app-hero-table></app-hero-table>
+    </div>
+    <button (click)="onClick()" class="btn btn-light">Expand/Collapse</button>
+  </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* TODO Include global styles in read me*/
+.container , .masterContainerTest{
+  max-width:100%;
+}
+
+.adminBar{
+  background-color:lightsteelblue;
+  margin:0 !important;
+  margin-bottom: 10px !important;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+

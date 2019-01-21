@@ -1,0 +1,105 @@
+.heroImg {
+  width:235px;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: darkred;
+  z-index: 2;
+  cursor: pointer;
+}
+
+#overlayText{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+#overlayConfirmDeleteBtn{
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  /*font-size: 50px;*/
+  /*color: white;*/
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+button#overlayClose {
+  color: white;
+  font-size: 7em;
+  position: absolute;
+  left: 68%;
+  top: 30%;
+}
+
+/*.custom-radio{*/
+  /*display:inline;*/
+/*}*/
+/*.custom-radio-2{*/
+  /*margin-left: 10px;*/
+/*}*/
+label.custom-radio-label {
+  display: block;
+  text-align: left;
+  margin-top: 15px;
+}
+
+#counterHeroOverlay, #strongAgainstHeroOverlay {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 200%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightsteelblue;
+  z-index: 2;
+  cursor: pointer;
+}
+
+div.heroSelectionContainer{
+  float:left;
+}
+
+div.heroSelectionContainer ul{
+  list-style-type:none;
+}
+
+div.heroSelectionContainer img{
+  /*width:75px;*/
+  width:87px;
+  height:auto;
+
+  padding:2px;
+  cursor: pointer;
+}
+
+div.heroSelectionContainer p{
+  font-size:8px;
+  font-weight: bold;
+  color:darkslategrey;
+}
+.col-sm-12.heroSelectionContainer li {
+  display: inline-block;
+}
+
+.col-sm-12.heroSelectionContainer li p {
+  text-align:center;
+}
+
+.selectedHero{
+  background-color:lightgreen;
+}

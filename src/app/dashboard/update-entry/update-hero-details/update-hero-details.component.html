@@ -1,0 +1,160 @@
+<!-- TODO ADD TAGS SUCH AS INTIATOR ROAMER -->
+<p>
+  update-hero-details works!
+</p>
+
+<h3 class="text-center mb-5">Modify Hero Properties </h3>
+
+<div *ngIf="showError" role="alert" class="alert alert-danger">Oops you made a mistake :(</div>
+<div *ngIf="showSuccess" role="alert" class="alert alert-success">Success you did it :)</div>
+
+<div class="container">
+  <form (ngSubmit)="onSave(form)" #form="ngForm">
+    <div class="row">
+      <!-- Left Side of Form -->
+      <div class="form-group col-6">
+        <label for="heroName">Hero Name</label>
+        <input type="text" id="heroName" name="heroName" class="form-control" ngModel placeholder="{{ (hero | async)?.name }}">
+        <br>
+        <label for="heroNickName">Hero Nickname</label>
+        <input type="text" id="heroNickName" name="heroNickName" class="form-control" ngModel placeholder="{{ (hero | async)?.nickName }}">
+        <br>
+        <label for="heroLanes">Hero Lanes <em>(currently: {{ (hero|async)?.lanes  }} )</em></label>
+        <select class="form-control" multiple id="heroLanes" name="heroLanes" ngModel>
+          <option *ngFor="let lane of lanes; let i = index" value={{lanes[i]}} >
+            {{lane | titlecase}} Lane
+          </option>
+        </select>
+
+        <br>
+        <label for="heroPositions">Hero Position <em>(currently: {{ (hero|async)?.position }} )</em></label>
+        <select class="form-control" multiple name="heroPositions" id="heroPositions" ngModel>
+          <option *ngFor="let position of positions; let i = index" value={{positions[i]}} >
+            Position {{position}}
+          </option>
+        </select>
+        <br>
+
+        <!-- Good Against Descript -->
+        <div class="form-group">
+          <label for="goodAgainstDescript">Good Against Description</label>
+          <textarea class="form-control" name="goodAgainstDescript" id="goodAgainstDescript" rows="5" ngModel placeholder="{{(hero | async)?.heroGoodAgainstDescript}}"></textarea>
+        </div>
+
+        <!-- Counter Descript -->
+        <div class="form-group">
+          <label for="counterDescript">Bad Against Description</label>
+          <textarea class="form-control" name="counterDescript" id="counterDescript" rows="5" ngModel placeholder="{{(hero | async)?.counterDescript}}"></textarea>
+        </div>
+
+        <!-- TODO: INCLUDE GOOD AGAINST like WHEN TO PICK -->
+
+      </div>
+
+      <!-- Right Side of Form-->
+      <div class="form-group col-6">
+        <img src="{{(hero | async)?.imgUrl}}" class="clearfix d-block heroImg">
+        <label for="heroImgUrl"> Hero Img Url</label>
+        <input type="text" id="heroImgUrl" name="heroImgUrl" class="form-control"
+               ngModel value="{{ (hero | async)?.imgUrl }}">
+
+        <!-- Meta Radio Buttons -->
+        <div id="metaRadioBoxes" class="form-group">
+          <label class="custom-radio-label" for="metaRadioBoxes">Meta (currently : {{ (hero|async)?.meta }} )</label>
+          <input type="radio" value="true" name="isMeta" ngModel> True
+          <input type="radio" value="false" name="isMeta" ngModel> False
+        </div>
+
+        <!-- Stat Type -->
+        <div id="statTypeRadioBoxes" class="mt-3 form-group">
+          <label for="statTypeRadioBoxes" class="custom-radio-label">Stat Type (currently: {{ (hero|async)?.statType }})</label>
+          <input type="radio" value="str" name="statType" ngModel> Str
+          <input type="radio" value="agi" name="statType"  ngModel> Agi
+          <input type="radio" value="int" name="statType"  ngModel> Int
+        </div>
+
+        <!-- isFavorite -->
+        <div id="favRadioBoxes" class="form-group">
+          <label class="custom-radio-label" for="favRadioBoxes"> isFavorite (currently : {{ (hero|async)?.favorite }} )</label>
+          <input type="radio" value="true" name="isFav" ngModel> True
+          <input type="radio" value="false" name="isFav" ngModel> False
+        </div>
+
+
+        <div class="form-group">
+          <!-- Counter Hero Button -->
+          <button type="button" class="btn btn-info btn" (click)="onCounterHeroBtnClick()">COUNTERED HEROES</button>
+          <!-- Strong Against Hero Button -->
+          <button type="button" class="btn btn-info ml-1" (click)="onStrongAgainstHeroBtnClick()">STRONG AGAINST HEROES</button>
+        </div>
+
+        <!-- Synergy Descript -->
+        <div class="form-group">
+          <label for="synergyDescript">Good With Description</label>
+          <textarea class="form-control" name="synergyDescript" id="synergyDescript" rows="5" ngModel placeholder="{{(hero | async)?.synergyDescript}}"></textarea>
+        </div>
+
+        <div class="mt-3 ml-1 row">
+          <button class="btn btn-success mr-3" name="saveButton"> Save Changes </button>
+          <button type="button" routerLink="../" class="btn btn-danger mr-3" name="cancelButton"> Cancel </button>
+          <button type="button" class="btn btn-danger-outline" (click)="onDeleteAreYouSure()">Delete Hero</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+<!-- ALL OVERLAYS -->
+
+<div id="overlay">
+  <h3 id="overlayText">Are you sure?</h3>
+  <button (click)="onDeleteConfirmed()" type="button" id="overlayConfirmDeleteBtn" class="btn btn-light" routerLink="../">Confirm Delete Hero: {{(hero|async)?.name}}</button>
+  <button (click)="onCancelDelete()" id="overlayClose" type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">X</span>
+  </button>
+</div>
+
+<div *ngIf="this.showCounterHeroOverlay" id="counterHeroOverlay">
+  <h4>Counter Hero Table</h4>
+  <!-- Hero Table -->
+  <div class="row heroRow">
+    <div class="col-sm-12 heroSelectionContainer" >
+      <div>
+        <ul>
+          <li [ngClass]="{selectedHero: this.selectedHeroCounterIds.includes(e.id) }" (click)="onCounterHeroClick(e)" *ngFor="let e of heroCollectionDisplay; index as i;">
+          <img src="{{e.imgUrl}}"/>
+            <p>{{e.name}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="float-right" style="position:relative; right: 150px;">
+    <button type="button" class="btn btn-danger mr-3" (click)="onCounterHeroCancel()">Cancel</button>
+    <button type="button" class="btn btn-success" (click)="onCounterHeroConfirm()">Submit</button>
+  </div>
+</div>
+
+<div *ngIf="this.showStrongAgainstHeroOverlay" id="strongAgainstHeroOverlay">
+  <h4>Strong Against Hero Table</h4>
+  <!-- Hero Table -->
+  <div class="row heroRow">
+    <div class="col-sm-12 heroSelectionContainer" >
+      <div>
+        <ul>
+          <li [ngClass]="{selectedHero: this.selectedHeroStrongAgainstIds.includes(e.id) }" (click)="onStrongAgainstHeroClick(e)" *ngFor="let e of heroCollectionDisplay; index as i;">
+            <img src="{{e.imgUrl}}"/>
+            <p>{{e.name}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="float-right" style="position:relative; right: 150px;">
+    <button type="button" class="btn btn-danger mr-3" (click)="onStrongAgainstHeroCancel()">Cancel</button>
+    <button type="button" class="btn btn-success" (click)="onStrongAgainstHeroConfirm()">Submit</button>
+  </div>
+</div>
+
+

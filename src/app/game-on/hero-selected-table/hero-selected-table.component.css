@@ -1,0 +1,66 @@
+ul.heroList{
+  position:relative;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+ul.heroList div {
+  display:inline;
+}
+
+.heroList div>li{
+ float:left;
+}
+
+.heroList img {
+  width: 4em;
+  padding:2px;
+  display: block;
+  margin-left: 50%;
+  margin-top: 10px;
+  cursor:pointer;
+}
+
+/*.highlightSelectedContainer{*/
+  /*border: 22px solid yellowgreen;*/
+  /*position:relative;*/
+  /*margin-bottom: 25px;*/
+  /*margin-top:10px;*/
+/*}*/
+
+.radiantHeader{
+display:block;
+}
+
+.direHeader{
+position:absolute;
+display:inline-block;
+right:5px;
+}
+
+.heroSelectedContainer{
+  position:relative;
+  margin-bottom: 27px;
+}
+
+.chooseSideHeader{
+  text-align:center;
+  color: #f84ac5;
+  position:absolute;
+  left:40%;
+}
+
+.heroItem{
+  position:relative;
+}
+
+img.cancelIcon{
+  position:absolute;
+  width:15px !important;
+}
+
+
+
+

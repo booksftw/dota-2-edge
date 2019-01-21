@@ -1,0 +1,70 @@
+<p>
+  add-entry works!
+</p>
+
+<div *ngIf="showError" role="alert" class="alert alert-danger">Oops you made a mistake :(</div>
+<div *ngIf="showSuccess" role="alert" class="alert alert-success">Success you did it :)</div>
+
+<div class="col-7 d-block mx-auto">
+  <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="form-group">
+      <label for="heroName">Hero Name</label>
+      <input
+        type="text"
+        id  ='heroName'
+        name="heroName"
+        class="form-control"
+        ngModel
+        >
+    </div>
+    <div class="form-group">
+      <label for="heroNickname">Hero Nickname</label>
+      <input
+        type="text"
+        id  ='heroNickname'
+        name="heroNickname"
+        class="form-control"
+        ngModel
+        required>
+    </div>
+    <div class="form-group">
+      <label for="heroImgUrl">Hero Image Url</label>
+      <input
+        type="text"
+        id  ='heroImgUrl'
+        name="heroImgUrl"
+        class="form-control"
+        ngModel
+        required>
+    </div>
+    <hr>
+    <select class="form-control" multiple name="heroLanes" ngModel>
+      <option *ngFor="let lane of lanes; let i = index" value={{lanes[i]}} >
+        {{lane | titlecase}} Lane
+      </option>
+    </select>
+    <hr>
+    <select class="form-control" multiple name="heroPositions" ngModel>
+      <option *ngFor="let position of positions; let i = index" value={{positions[i]}} >
+        Position {{position}}
+      </option>
+    </select>
+    <br>
+    <!-- Meta Radio Buttons -->
+    <div id="metaRadioBoxes" class="form-group">
+      <label class="custom-radio-label" for="metaRadioBoxes">isMeta</label>
+      <input type="radio" value="true" name="isMeta" ngModel> True
+      <input type="radio" value="false" name="isMeta" ngModel> False
+    </div>
+    <br>
+    <!-- Stat Type -->
+    <div id="statTypeRadioBoxes" class="mt-3 form-group">
+      <label for="statTypeRadioBoxes" class="custom-radio-label">Stat Type</label>
+      <input type="radio" value="str" name="statType" ngModel> Str
+      <input type="radio" value="agi" name="statType"  ngModel> Agi
+      <input type="radio" value="int" name="statType"  ngModel> Int
+    </div>
+    <br>
+    <button class="btn btn-primary">Submit</button>
+  </form>
+</div>

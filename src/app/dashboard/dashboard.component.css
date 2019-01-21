@@ -1,0 +1,22 @@
+.dashboard-nav a {
+  color:black;
+}
+
+.navbar {
+  height: 9em;
+}
+
+.nav-item {
+  font-size: 2em;
+  color: #0c359a !important;
+  /*position: relative;*/
+  /*top: -174px;*/
+}
+
+a.navbar-brand.nav-item.pl-5{
+  margin-left:1.2em;
+}
+
+a.navbar-brand.nav-item.pr-5{
+  margin-right:1.2em;
+}

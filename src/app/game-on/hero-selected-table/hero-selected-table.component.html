@@ -1,0 +1,57 @@
+<!-- TODO: INCLUDE HERO INTIATIOR AND BALANCE COMPOSITION CHECK -->
+
+<h1 *ngIf="showMaxHeroLimitErrorMsg" style="background-color:yellowgreen">Max Hero ERROR MSG</h1>
+<h1 *ngIf="showDuplicationErrorMsg" style="background-color:palevioletred">Duplication ERROR MSG</h1>
+
+<div heroSelectionActive class="container heroSelectedContainer">
+  <div class="row">
+    <p style="color:royalblue" class="radiantHeader">Radiant</p>
+    <h2 class="chooseSideHeader" *ngIf="userIsSelectingSide" >Choose Side</h2>
+    <p style="color:darkred;" class="direHeader">Dire</p>
+  </div>
+  <div class="row">
+
+    <!-- Radiant -->
+    <!-- Enable Click Event Only When Hero Is Selecting Side  Else remove-->
+    <div *ngIf="userIsSelectingSide; else noRadiantClickListener" (click)="onSideClick('radiant')" class="col" style="background-color:royalblue; height:4em;">
+      <ul  class="heroList">
+        <div><li  *ngFor="let radHero of radiantHeroSpots">
+          <img src="{{radHero.imgUrl}}">
+        </li></div>
+      </ul>
+    </div>
+    <ng-template #noRadiantClickListener>
+      <div class="col" style="background-color:royalblue; height:4em;">
+        <ul  class="heroList">
+          <div><li class="heroItem" (click)="onHeroDeleteClick('radiant',i, radHero)" *ngFor="let radHero of radiantHeroSpots; index as i;">
+            <img class="cancelIcon" src="https://firebasestorage.googleapis.com/v0/b/dota2edge-0.appspot.com/o/cancel-icon.png?alt=media&token=e673ef1d-3b47-424d-a227-d2eaadf5dca5">
+            <img src="{{radHero.imgUrl}}">
+          </li></div>
+        </ul>
+      </div>
+    </ng-template>
+
+    <!-- DIRE -->
+    <!-- Enable Click Event Only When Hero Is Selecting Side  Else remove-->
+    <div *ngIf="userIsSelectingSide; else noDireClickListener" (click)="onSideClick('dire')" class="col" style="background-color:darkred; height:4em;">
+      <ul  class="heroList">
+        <div><li *ngFor="let direHero of direHeroSpots">
+          <img src={{direHero.imgUrl}}>
+        </li></div>
+      </ul>
+    </div>
+    <ng-template #noDireClickListener>
+      <div class="col" style="background-color:darkred; height:4em;">
+        <ul  class="heroList">
+          <div><li class="heroItem" (click)="onHeroDeleteClick('dire',i, direHero)" *ngFor="let direHero of direHeroSpots; index as i">
+            <img class="cancelIcon" src="https://firebasestorage.googleapis.com/v0/b/dota2edge-0.appspot.com/o/cancel-icon.png?alt=media&token=e673ef1d-3b47-424d-a227-d2eaadf5dca5">
+            <img src={{direHero.imgUrl}}>
+          </li></div>
+        </ul>
+      </div>
+    </ng-template>
+
+  </div>
+</div>
+
+

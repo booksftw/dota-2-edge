@@ -1,0 +1,64 @@
+
+<div *ngIf="userPickingSide">
+  <!-- Filters -->
+  <div class="container filterControls">
+    <!-- wireframe update this later with functionality -->
+    <div style="position:relative;" class="row" >
+      <!--<div style="background-color:lightgrey; height:1.5em; width: 9em; position: relative; left:60px">-->
+        <!--Search Filter-->
+      <!--</div>-->
+
+      <form (ngSubmit)="onFilterHeroTable(form)" #form="ngForm">
+        <div style="position: relative; left:40px" class="form-group">
+          <label class="form-check-label" for="metaFilter" >Meta</label>
+          <input class="form-check-inline" type="checkbox" name="metaFilter" id="metaFilter" ngModel>
+        </div>
+        <!-- Coming soon Counter Filter -->
+        <div style="display:none;position: relative; left:105px" class="form-group">
+          <label for="counterFilter"> <del> Counter Check </del> </label>
+          <input name="counterFilter" type="checkbox" class="form-check-inline" id="counterFilter" ngModel>
+        </div>
+        <!-- Coming soon Counter Filter -->
+        <div style="position: relative; left:250px" class="form-group">
+          <label class="form-check-label" for="favFilter">Favs Only</label>
+          <input type="checkbox" id="favFilter" name="favFilter" type="checkbox" class="form-check-inline" ngModel>
+        </div>
+        <div style="position: absolute; left:350px">
+          <input type="radio" name="userPos" value="posAll" [(ngModel)]="userPositionFilter"> Pos All
+          <input type="radio" name="userPos" value="1" [(ngModel)]="userPositionFilter"> Pos 1
+          <input type="radio" name="userPos" value="2" [(ngModel)]="userPositionFilter"> Pos 2
+          <input type="radio" name="userPos" value="3" [(ngModel)]="userPositionFilter"> Pos 3
+          <input type="radio" name="userPos" value="4" [(ngModel)]="userPositionFilter"> Pos 4
+          <input type="radio" name="userPos" value="5" [(ngModel)]="userPositionFilter"> Pos 5
+        </div>
+        <br><br>
+        <div style="position:relative; left:40px; margin-bottom:20px;" class="filterButtons">
+          <button style="margin-right:15px;" class="btn btn-dark">Update</button>
+          <button type="reset" (click)="onResetFilters()" class="btn btn-info">Clear Filters</button>
+        </div>
+      </form>
+    </div>
+
+      <!-- Hero Table -->
+      <div class="row heroRow">
+        <div class="col-sm-12 heroSelectionContainer" >
+          <!--<h1>Hero table</h1>-->
+          <div>
+            <ul>
+              <!--<li class="nz"  [ngClass]="{filteredOut:false}" (click)="onHeroClick(e)" *ngFor="let e of heroCollection | async">-->
+              <li  class="nz"  [ngClass]="{filteredOut:e.inHeroSelectedTable}" (click)="onHeroClick(e)" *ngFor="let e of heroCollectionDisplay">
+                <img src="{{e.imgUrl}}"/>
+                <p>{{e.name}}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+  </div>
+</div>
+
+
+
+
