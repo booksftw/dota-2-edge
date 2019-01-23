@@ -7,7 +7,7 @@ import {AuthService} from '../shared/auth-service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  userIsAdmin = false;
+  userIsAdmin = true;
 
   constructor(private nzAuth: AuthService) { }
 

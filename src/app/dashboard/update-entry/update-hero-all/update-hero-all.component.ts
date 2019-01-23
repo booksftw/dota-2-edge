@@ -17,12 +17,6 @@ export class UpdateHeroAllComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //
-    // let jess = this.getFirebase.heroCollectionByName('Jessica');
-    //
-    // jess.subscribe(res => {
-    //   this.heroId = res;
-    // });
 
     
     // 3 Edit the entire hero collection
